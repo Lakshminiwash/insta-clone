@@ -40,7 +40,6 @@ async function registerController(req, res) {
     res.status(201).json({
         message: "userData generated successfully",
         user,
-        token
     })
 }
 
@@ -86,7 +85,7 @@ async function loginController(req, res) {
 
     res.status(200).json({
         message: "user logged in",
-        user,token
+        user,
     })
 }
 
