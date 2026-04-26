@@ -1,7 +1,12 @@
 import axios from "axios";
 
+const api = axios.create({
+    baseURL:"http://localhost:3000/api/auth",
+    withCredentials:true
+})
+
 export async function login(email,password) {
-        const response = await axios.post("http://localhost:3000/api/auth/login",{
+        const response = await api.post("/login",{
             email,password
         })
         return response.data
@@ -9,14 +14,14 @@ export async function login(email,password) {
 
 
 export async function register(email,username,password){
-        const response = await axios.post("http://localhost:3000/api/auth/register",{
+        const response = await api.post("/register",{
             username,email,password
         })
         return response.data
 }
 
 export async function getme() {
-    const response = await axios.get("http://localhost:3000/api/auth/getme")
+    const response = await api.get("/getme")
 
     return response.data
     

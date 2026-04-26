@@ -16,6 +16,7 @@ const LoginPage = () => {
         e.preventDefault()
 
         await handleLogin(email,password)
+        console.log("user logged in")
         navigate("/")
      }
      if(loading){
