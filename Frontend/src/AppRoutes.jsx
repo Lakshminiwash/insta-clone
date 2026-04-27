@@ -2,6 +2,7 @@
 import { createBrowserRouter } from "react-router-dom";
 import LoginPage from "./features/auth/pages/LoginPage";
 import RegisterPage from "./features/auth/pages/RegisterPage";
+import Feed from "./features/posts/pages/Feed";
 
 
 export const router = createBrowserRouter([
@@ -14,8 +15,8 @@ export const router = createBrowserRouter([
         element: <RegisterPage />
     },
     {
-        path: "/",
-        element: <h1>welcome to homepage</h1>
+        path: "/feed",
+        element: <Feed/>
     }
 ])
 

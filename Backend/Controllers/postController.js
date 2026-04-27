@@ -2,6 +2,7 @@ const postModel = require("../models/postModal")
 const ImageKit = require("@imagekit/nodejs")
 const { toFile } = require("@imagekit/nodejs")
 const jwt = require("jsonwebtoken")
+const likemodal = require("../models/likeModel")
 
 const imagekit = new ImageKit({
     privateKey: process.env.IMGKIT_PRIVATE_KEY
@@ -75,8 +76,29 @@ async function getPostDetailsController(req, res) {
     })
 }
 
+async function getFeedController(req,res) {
+    const user = req.user
+
+    const posts = await Promise.all((await postModel.find({}).populate("user").lean())
+    .map(async(post)=>{
+            const isLiked =await likemodal.findOne({
+                user:user.username,
+                post:post._id
+            })
+
+            post.isLiked = Boolean(isLiked)
+            return post
+    }))
+    res.status(200).json({
+        message: "posts fetched successfully.",
+        posts
+    })
+
+}
+
 module.exports = {
     creatPostController,
     getPostController,
-    getPostDetailsController
+    getPostDetailsController,
+    getFeedController
 }
