@@ -17,7 +17,7 @@ app.use(cors({
 app.use("/api/auth", authRouter);
 app.use("/api/post", postRouter);
 app.use("/api/followUnfollow",followUnfollowRouter);
-app.use("/api/like",likeRouter);
+app.use("/api",likeRouter);
 
 
 module.exports = app

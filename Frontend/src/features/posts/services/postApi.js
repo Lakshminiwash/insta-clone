@@ -9,4 +9,23 @@ export async function getFeed() {
     const response = await api.get("/api/post/feed")
     return response.data
 }
+
+export async function likePost(postId) {
+    const response = await api.post("/api/like/"+postId)
+    return response.data
+}
+
+export async function unLikePost(postId) {
+    const response = await api.post("/api/unLike/"+postId)
+    return response.data
+}
+
+export async function createPost(imageFile,caption) {
+    const formData = new FormData()
+    formData.append("file",imageFile)
+    formData.append("caption",caption)
+
+    const response = await api.post("/api/post/",formData)
+    return response.data
+}
 // getFeed(
